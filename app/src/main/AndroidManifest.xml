@@ -9,6 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Projets4">
+        <activity android:name=".Patient.Patient"></activity>
+        <activity android:name=".Admin.Admin" />
+        <activity android:name=".doctor.doctor" />
         <activity android:name=".authentication.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
