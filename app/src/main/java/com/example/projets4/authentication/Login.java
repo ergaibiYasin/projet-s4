@@ -4,10 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 //import android.*;
 import com.example.projets4.Admin.Admin;
+import com.example.projets4.HomeFragment;
 import com.example.projets4.MainActivity;
 import com.example.projets4.Patient.Patient;
 import com.example.projets4.R;
-import com.example.projets4.doctor.doctor;
+import com.example.projets4.Sidebar;
+import com.example.projets4.doctor.Doctor;
+import com.example.projets4.doctor.Doctor;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
@@ -17,6 +20,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -86,25 +90,32 @@ public class Login extends AppCompatActivity {
         df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Log.d("TAG", "onSuccess: " + documentSnapshot.getData());
-                // identify the user access level
+
                 if(documentSnapshot.getString("isDoc") != null){
-                    startActivity(new Intent(getApplicationContext(), doctor.class));
+                    Log.d("TAG", "user Role!!: " + documentSnapshot.getData());
+                    Intent intent = new Intent(getApplicationContext(), Sidebar.class);
+                    intent.putExtra("isDoc", "1");
+                    getApplicationContext().startActivity(intent);
                     finish();
                 }
 
                 if(documentSnapshot.getString("isAdmin") != null){
-                    startActivity(new Intent(getApplicationContext(), Admin.class));
+                    Intent intent = new Intent(getApplicationContext(), Sidebar.class);
+                    intent.putExtra("isAdmin", "1");
+                    getApplicationContext().startActivity(intent);
                     finish();
                 }
 
                 if(documentSnapshot.getString("isPatient") != null){
-                    startActivity(new Intent(getApplicationContext(), Patient.class));
+                    Intent intent = new Intent(getApplicationContext(), Sidebar.class);
+                    intent.putExtra("isPatient", "1");
+                    getApplicationContext().startActivity(intent);
                     finish();
                 }
             }
         });
     }
+
 
     @Override
     protected void onStart() {
@@ -115,17 +126,23 @@ public class Login extends AppCompatActivity {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     if(documentSnapshot.getString("isDoc") != null){
-                        startActivity(new Intent(getApplicationContext(), doctor.class));
+                        Intent intent = new Intent(getApplicationContext(), Sidebar.class);
+                        intent.putExtra("isDoc", "1");
+                        getApplicationContext().startActivity(intent);
                         finish();
                     }
 
                     if(documentSnapshot.getString("isAdmin") != null){
-                        startActivity(new Intent(getApplicationContext(), Admin.class));
+                        Intent intent = new Intent(getApplicationContext(), Sidebar.class);
+                        intent.putExtra("isAdmin", "1");
+                        getApplicationContext().startActivity(intent);
                         finish();
                     }
 
                     if(documentSnapshot.getString("isPatient") != null){
-                        startActivity(new Intent(getApplicationContext(), Patient.class));
+                        Intent intent = new Intent(getApplicationContext(), Sidebar.class);
+                        intent.putExtra("isPatient", "1");
+                        getApplicationContext().startActivity(intent);
                         finish();
                     }
                 }
