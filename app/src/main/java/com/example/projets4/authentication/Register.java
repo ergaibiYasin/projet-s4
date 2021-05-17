@@ -3,10 +3,9 @@ package com.example.projets4.authentication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.projets4.MainActivity;
 import com.example.projets4.Patient.Patient;
 import com.example.projets4.R;
-import com.example.projets4.doctor.doctor;
+import com.example.projets4.doctor.Doctor;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
@@ -17,14 +16,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -146,7 +142,7 @@ public class Register extends AppCompatActivity {
                         });;
 
                         if (isDoctorBox.isChecked()){
-                            startActivity(new Intent(getApplicationContext(), doctor.class));
+                            startActivity(new Intent(getApplicationContext(), Doctor.class));
                             finish();                        }
 
                         if (isPatientBox.isChecked()){
